@@ -9,13 +9,29 @@
 
 Post.destroy_all
 User.destroy_all
+FriendRequest.destroy_all
+Friendship.destroy_all
 
 10.times do
-  User.create!(
+  user = User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.unique.email,
-    password: "123456",
+    password: "password",
   )
+
+  if User.count >= 2
+    5.times do
+      requester = User.where.not(id: user.id).sample
+      FriendRequest.create!(requester_id: requester.id, receiver_id: user.id, status: "pending")
+      FriendRequest.create!(requester_id: requester.id, receiver_id: user.id, status: "accepted")
+      FriendRequest.create!(requester_id: requester.id, receiver_id: user.id, status: "rejected")
+    end
+  end
+
+  User.all.each do |other_user|
+    next if user == other_user
+    Friendship.create!(user: user, friend: other_user)
+  end
 end
 
 User.all.each do |user|
@@ -25,11 +41,4 @@ User.all.each do |user|
       content: Faker::Lorem.paragraph,
     )
   end
-
-  # 5.times do
-  #   sender = User.where.not(id: user.id).sample
-  #  FriendRequest.create!(sender: sender, receiver: user, status: "pending")
-  #  FriendRequest.create!(sender: sender, receiver: user, status: "accepted")
-  # FriendRequest.create!(sender: sender, receiver: user, status: "rejected")
-  #end
 end
