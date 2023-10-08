@@ -1,15 +1,16 @@
-<div class="d-flex align-items-center justify-content-center">
-  <h1>Welcome to Facebook!</h1>
-</div>
-<div class="d-flex align-items-center justify-content-center">
-  <p>Find me in app/views/pages/home.html.erb</p>
-</div>
-<div class="d-flex align-items-center justify-content-center">
-  <% if current_user %>
-    <p> Logged in as <%= current_user.email %></p>
-    <%=  button_to "Sign Out", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "Login", new_user_session_path %>
-    <%= link_to "Sign up", new_user_registration_path %>
-  <% end %>
+<div class="container d-flex align-items-center justify-content-center vh-100">
+  <div class="row text-center align-items-center">
+    <div class="col-12">
+      <h1>Welcome to Facebook!</h1>
+    </div>
+    <div class="col-12 mt-3">
+      <% if current_user %>
+        <p>Logged in as <%= current_user.email %></p>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "btn btn-primary btn-lg mb-2" %>
+        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg mb-2" %>
+      <% end %>
+    </div>
+  </div>
 </div>

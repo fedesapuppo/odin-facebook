@@ -16,6 +16,11 @@
           <a class="nav-link" href="#">Friends</a>
         </li>
       </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
