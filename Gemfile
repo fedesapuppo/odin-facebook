@@ -55,6 +55,7 @@ gem "responders"
 gem "simple_form"
 gem "figaro"
 gem "faker"
+gem "factory_bot_rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -84,3 +85,5 @@ end
 group :production do
   # Additional production-specific gems can be added here.
 end
+
+gem "factory_bot", "~> 6.2"
