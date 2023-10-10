@@ -16,9 +16,12 @@ User.all.each do |user|
     requester = User.where.not(id: user.id).sample
     Friendship.find_or_create_by(user: requester, friend: user)
 
-    FriendRequest.find_or_create_by(requester_id: requester.id, receiver_id: user.id, status: "pending")
-    FriendRequest.find_or_create_by(requester_id: requester.id, receiver_id: user.id, status: "accepted")
-    FriendRequest.find_or_create_by(requester_id: requester.id, receiver_id: user.id, status: "rejected")
+    statuses = ["pending", "accepted", "rejected"]
+
+    statuses.each do |status|
+      existing_request = FriendRequest.find_by(requester_id: requester.id, receiver_id: user.id, status: status)
+      FriendRequest.find_or_create_by(requester_id: requester.id, receiver_id: user.id, status: status) unless existing_request
+    end
   end
 end
 

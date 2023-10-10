@@ -1,0 +1,10 @@
+<h1>Notifications</h1>
+<ul>
+  <% @friend_requests.each do |friend_request| %>
+    <li>
+      <%= friend_request.receiver.name %> sent you a friend request.
+      <%= button_to 'Accept', accept_friend_request_path(friend_request), method: :put, class: 'btn btn-success' %>
+      <%= button_to 'Reject', reject_friend_request_path(friend_request), method: :put, class: 'btn btn-danger' %>
+    </li>
+  <% end %>
+</ul>
