@@ -2,12 +2,12 @@
 <ul>
   <% @friend_requests.each do |friend_request| %>
     <li>
-      <%= friend_request.receiver.name %> sent you a friend request.
+      <%= friend_request.requester.name %> sent you a friend request.
       <%= form_with model: friend_request, url: friendship_acknowledgements_path, method: :post do |f| %>
         <%= f.hidden_field :friend_request_id, value: friend_request.id %>
         <%= f.submit 'Accept', class: 'btn btn-success' %>
       <% end %>
-      <%= form_with model: friend_request, url: friendship_acknowledgement_path(friend_request), method: :delete do |f| %>
+      <%= form_with model: friend_request, url: friendship_acknowledgement_path(friend_request.id), method: :delete do |f| %>
         <%= f.hidden_field :friend_request_id, value: friend_request.id %>
         <%= f.submit 'Reject', class: 'btn btn-danger' %>
       <% end %>

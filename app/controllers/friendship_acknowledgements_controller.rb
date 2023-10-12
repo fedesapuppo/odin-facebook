@@ -4,9 +4,9 @@ class FriendshipAcknowledgementsController < ApplicationController
 
     ActiveRecord::Base.transaction do
       friend_request.update(status: "accepted")
-      friendship = Friendship.create(user: friend_request.receiver, friend: friend_request.requester)
-      friendship = Friendship.create(user: friend_request.requester, friend: friend_request.receiver)
-      FriendshipAcknowledgement.create(friend_request: friend_request, friendship: friendship)
+      friendship1 = Friendship.create(user: friend_request.receiver, friend: friend_request.requester)
+      friendship2 = Friendship.create(user: friend_request.requester, friend: friend_request.receiver)
+      FriendshipAcknowledgement.create(friend_request: friend_request, friendships: [friendship1, friendship2])
     end
 
     redirect_to notifications_path
