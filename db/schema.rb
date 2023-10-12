@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_06_120848) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_12_083934) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_120848) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "friendship_acknowledgements", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "friend_request_id", null: false
+    t.bigint "friendship_id", null: false
+    t.index ["friend_request_id"], name: "index_friendship_acknowledgements_on_friend_request_id"
+    t.index ["friendship_id"], name: "index_friendship_acknowledgements_on_friendship_id"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -72,6 +81,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_120848) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "friendship_acknowledgements", "friend_requests"
+  add_foreign_key "friendship_acknowledgements", "friendships"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"

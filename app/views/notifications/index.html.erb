@@ -3,8 +3,14 @@
   <% @friend_requests.each do |friend_request| %>
     <li>
       <%= friend_request.receiver.name %> sent you a friend request.
-      <%= button_to 'Accept', accept_friend_request_path(friend_request), method: :put, class: 'btn btn-success' %>
-      <%= button_to 'Reject', reject_friend_request_path(friend_request), method: :put, class: 'btn btn-danger' %>
+      <%= form_with model: friend_request, url: friendship_acknowledgements_path, method: :post do |f| %>
+        <%= f.hidden_field :friend_request_id, value: friend_request.id %>
+        <%= f.submit 'Accept', class: 'btn btn-success' %>
+      <% end %>
+      <%= form_with model: friend_request, url: friendship_acknowledgement_path(friend_request), method: :delete do |f| %>
+        <%= f.hidden_field :friend_request_id, value: friend_request.id %>
+        <%= f.submit 'Reject', class: 'btn btn-danger' %>
+      <% end %>
     </li>
   <% end %>
 </ul>

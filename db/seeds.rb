@@ -3,7 +3,7 @@ User.destroy_all
 FriendRequest.destroy_all
 Friendship.destroy_all
 
-10.times do
+50.times do
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.unique.email,
@@ -12,15 +12,33 @@ Friendship.destroy_all
 end
 
 User.all.each do |user|
+  friends = User.where.not(id: user.id).sample(5)
+
+  friends.each do |friend|
+    Friendship.find_or_create_by(user: user, friend: friend)
+  end
+end
+
+User.all.each do |user|
+  other_users = User.where.not(id: user.id)
+  requested_users = []
+
   5.times do
-    requester = User.where.not(id: user.id).sample
-    Friendship.find_or_create_by(user: requester, friend: user)
+    requester = other_users.sample
+    unless requested_users.include?(requester)
+      requested_users << requester
 
-    statuses = ["pending", "accepted", "rejected"]
+      friendship = Friendship.find_by(user: user, friend: requester)
 
-    statuses.each do |status|
-      existing_request = FriendRequest.find_by(requester_id: requester.id, receiver_id: user.id, status: status)
-      FriendRequest.find_or_create_by(requester_id: requester.id, receiver_id: user.id, status: status) unless existing_request
+      unless friendship
+        status = ["pending", "accepted", "rejected"].sample
+
+        FriendRequest.find_or_create_by(
+          requester: user,
+          receiver: requester,
+          status: status,
+        )
+      end
     end
   end
 end
