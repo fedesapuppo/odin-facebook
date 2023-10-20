@@ -6,7 +6,7 @@ class FriendshipAcknowledgementsController < ApplicationController
       friend_request.update(status: "accepted")
       friendship1 = Friendship.create(user: friend_request.receiver, friend: friend_request.requester)
       friendship2 = Friendship.create(user: friend_request.requester, friend: friend_request.receiver)
-      FriendshipAcknowledgement.create(friend_request: friend_request, friendships: [friendship1, friendship2])
+      FriendshipAcknowledgement.create(friend_request_id: friend_request.id, friendship_id: [friendship1, friendship2])
     end
 
     redirect_to notifications_path
