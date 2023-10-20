@@ -24,19 +24,19 @@ User.all.each do |user|
   requested_users = []
 
   5.times do
-    requester = other_users.sample
-    unless requested_users.include?(requester)
-      requested_users << requester
+    receiver = other_users.sample
+    unless requested_users.include?(receiver)
+      requested_users << receiver
 
-      friendship = Friendship.find_by(user: user, friend: requester)
+      friendship = Friendship.find_by(user: user, friend: receiver)
 
       unless friendship
-        status = ["pending", "accepted", "rejected"].sample
+        status = [0, 1, 2].sample
 
         FriendRequest.find_or_create_by(
-          requester: user,
-          receiver: requester,
-          status: status,
+          requester_id: user.id,
+          receiver_id: receiver.id,
+          status: status
         )
       end
     end
