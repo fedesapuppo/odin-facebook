@@ -1,0 +1,29 @@
+<h1>Your Friends</h1>
+<% if @friends.any? %>
+  <ul>
+    <% @friends.each do |friend| %>
+      <li>
+        <%= friend.name %> (email: <%= friend.email %>)
+        <%= form_for friend, url: friendship_path(friend), method: :delete, html: { class: "friendship-form" } do |f| %>
+          <%= f.submit "Remove Friendship", class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this friendship?" } %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any friends yet.</p>
+<% end %>
+<%= link_to "Back to Home", posts_path, class: "btn btn-primary" %>
+<h1>Users Who Are Not Your Friends</h1>
+<ul>
+  <% @users_not_friends.each do |user| %>
+    <li>
+      <%= user.name %>
+      <%= form_with model: FriendRequest.new, url: friend_requests_path, method: :post do |f| %>
+        <%= f.hidden_field :receiver_id, value: user.id %>
+        <%= f.submit "Send Friend Request", class: "btn btn-success" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "Back to Home", posts_path, class: "btn btn-primary" %>
