@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'friend_requests/create'
   get 'friends/index'
   root "pages#home"
   devise_for :users

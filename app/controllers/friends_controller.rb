@@ -5,15 +5,15 @@ class FriendsController < ApplicationController
   def index
     @friend_requests = FriendRequest.where(receiver_id: current_user, status: 'pending')
     @friends = current_user.friends
-    @users_not_friends = User.where.not(id: current_user.friends)
+    @users_not_friends = User.where.not(id: current_user.friends).where.not(id: current_user.id)
   end
 
   def destroy
     if @friendship
       @friendship.destroy
-      flash[:success] = "Friendship removed successfully."
+      flash[:notice] = "Friendship removed successfully."
     else
-      flash[:error] = "Friendship not found."
+      flash[:alert] = "Friendship not found."
     end
     redirect_to friends_path
   end
