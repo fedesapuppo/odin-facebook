@@ -4,4 +4,6 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :content, presence: true, length: { maximum: 280 }
+
+  has_rich_text :content
 end
