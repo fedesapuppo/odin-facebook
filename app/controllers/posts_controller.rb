@@ -9,7 +9,6 @@ class PostsController < ApplicationController
   def index
     @friend_requests = FriendRequest.where(receiver_id: current_user, status: 'pending')
     @posts = PostsService.new(current_user).friends_and_own_posts
-    @post = Post.new
   end
   
   def create
@@ -21,7 +20,6 @@ class PostsController < ApplicationController
     else
       flash.now[:alert] = 'Post creation failed.'
     end
-    redirect_to posts_path
   end
 
   def edit

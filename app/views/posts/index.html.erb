@@ -4,12 +4,19 @@
     <% @posts.each do |post| %>
       <div class="post">
         <h2><%= post.title %></h2>
-        <p><%= @post.content %></p>
-        <p>Posted by: <%= post.user.name %></p>
-      </div>
-    <% end %>
-  <% else %>
-    <p>No posts to display.</p>
-  <% end %>
-  <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
-</div>
+        <p><%= post.content %></p>
+        <p> This post has <%= post.likes.count %>
+          <% if %>
+            <% post.likes.count == 1 %>
+            <p>like!<p/>
+            <% else %>
+              <p>  likes! </p>
+            <% end %>
+            <p>Posted by: <%= post.user.name %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No posts to display.</p>
+      <% end %>
+      <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+    </div>

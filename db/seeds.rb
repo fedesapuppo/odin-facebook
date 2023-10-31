@@ -2,6 +2,7 @@ Post.destroy_all
 User.destroy_all
 FriendRequest.destroy_all
 Friendship.destroy_all
+Like.destroy_all
 
 50.times do
   User.create!(
@@ -49,5 +50,15 @@ User.all.each do |user|
       title: Faker::Lorem.sentence,
       content: Faker::Lorem.paragraph,
     )
+  end
+end
+
+User.all.each do |user|
+  @posts = PostsService.new(user).friends_and_own_posts
+  10.times do
+    post = @posts.sample
+    unless Like.exists?(user: user, post: post)
+      Like.create!(user: user, post: post)
+    end
   end
 end
