@@ -31,4 +31,8 @@ class LikesController < ApplicationController
   def set_post
     @post = Post.find(params[:post_id])
   end
+
+  def post_params
+    params.require(:post).permit(:title, :content)
+  end
 end

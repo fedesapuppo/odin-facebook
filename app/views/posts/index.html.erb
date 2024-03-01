@@ -14,9 +14,9 @@
           <% end %>
         </p>
         <% if liked_by?(post, current_user) %>
-          <%= render "posts/partials/unlike_button" %>
+          <%= render "posts/partials/unlike_button", locals: {post: @post} %>
         <% else %>
-          <%= render "posts/partials/like_button" %>
+          <%= render "posts/partials/like_button", locals: {post: @post} %>
         <% end %>
         <p>Posted by: <%= post.user.name %></p>
       </div>
