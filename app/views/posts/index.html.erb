@@ -1,5 +1,6 @@
 <div class="trix-content">
   <h1>Timeline</h1>
+  <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
   <% if @posts.any? %>
     <% @posts.each do |post| %>
       <div class="post">
@@ -18,5 +19,4 @@
       <% else %>
         <p>No posts to display.</p>
       <% end %>
-      <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
     </div>
