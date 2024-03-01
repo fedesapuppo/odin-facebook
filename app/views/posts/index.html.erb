@@ -6,17 +6,22 @@
       <div class="post">
         <h2><%= post.title %></h2>
         <p><%= post.content %></p>
-        <p> This post has <%= post.likes.count %>
-          <% if %>
-            <% post.likes.count == 1 %>
-            <p>like!<p/>
-            <% else %>
-              <p>  likes! </p>
-            <% end %>
-            <p>Posted by: <%= post.user.name %></p>
-          </div>
+        <p>This post has <%= post.likes.count %>
+          <% if post.likes.count == 1 %>
+            like!
+          <% else %>
+            likes!
+          <% end %>
+        </p>
+        <% if liked_by?(post, current_user) %>
+          <%= render "posts/partials/unlike_button" %>
+        <% else %>
+          <%= render "posts/partials/like_button" %>
         <% end %>
-      <% else %>
-        <p>No posts to display.</p>
-      <% end %>
-    </div>
+        <p>Posted by: <%= post.user.name %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No posts to display.</p>
+  <% end %>
+</div>
