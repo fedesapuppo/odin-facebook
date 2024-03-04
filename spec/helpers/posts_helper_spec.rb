@@ -1,15 +1,28 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the PostsHelper. For example:
-#
-# describe PostsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe PostsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:current_user) { create(:user) }
+
+  before do
+    @post = create(:post)
+    @post.likes.create(user: current_user)
+    @like = @post.likes.find_by(user: current_user)
+    allow(helper).to receive(:current_user).and_return(current_user)
+  end
+
+  describe 'liked_by?' do
+    it 'returns true when liked by current logged in user' do
+      expect(helper.liked_by?(@post)).to be_truthy
+    end
+
+    it 'returns false when not liked by current logged in user' do
+      expect(!helper.liked_by?(@post)).to be_falsey
+    end
+  end
+
+  describe 'current_user_like' do
+    it 'returns the like object for the current user if the post is liked by the current user' do
+      expect(helper.current_user_like(@post)).to eq(@like)
+    end
+  end
 end

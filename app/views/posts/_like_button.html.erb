@@ -1,4 +1,4 @@
-<% if liked_by?(post, current_user) %>
+<% if liked_by?(post) %>
   <%= form_with model: current_user_like(post),
     url: post_like_path(post, current_user_like(post)),
     method: :delete, class: 'like-form' do |f| %>

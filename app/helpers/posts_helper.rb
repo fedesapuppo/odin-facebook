@@ -1,5 +1,5 @@
 module PostsHelper
-  def liked_by?(post, _user_id)
+  def liked_by?(post)
     post.likes.exists?(user: current_user)
   end
 
