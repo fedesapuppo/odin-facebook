@@ -4,6 +4,6 @@ module PostsHelper
   end
 
   def current_user_like(post)
-    post.likes.find_by(user_id: current_user.id)
+    post.likes.find_by(user: current_user)
   end
 end
