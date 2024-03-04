@@ -6,14 +6,8 @@
       <div class="post">
         <h2><%= post.title %></h2>
         <p><%= post.content %></p>
-        <p>This post has <%= post.likes.count %>
-          <%= pluralize(post.likes.count, "like") %>!
-        </p>
-        <% if liked_by?(post, current_user) %>
-          <%= render "posts/partials/unlike_button", post: @post %>
-        <% else %>
-          <%= render "posts/partials/like_button", locals: {post: @post} %>
-        <% end %>
+        <p>This post has <%= pluralize(post.likes.count, "like") %>! </p>
+        <%= render "posts/partials/like_button", post: post %>
         <p>Posted by: <%= post.user.name %></p>
       </div>
     <% end %>
