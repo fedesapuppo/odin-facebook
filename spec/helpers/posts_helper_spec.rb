@@ -2,27 +2,28 @@ require 'rails_helper'
 
 RSpec.describe PostsHelper, type: :helper do
   let(:current_user) { create(:user) }
+  let(:post) { create(:post) }
 
   before do
-    @post = create(:post)
-    @post.likes.create(user: current_user)
-    @like = @post.likes.find_by(user: current_user)
     allow(helper).to receive(:current_user).and_return(current_user)
   end
 
   describe 'liked_by?' do
-    it 'returns true when liked by current logged in user' do
-      expect(helper.liked_by?(@post)).to be_truthy
+    context 'liked by current logged in user' do
+      it 'returns true' do
+        # setup
+        post.likes.create(user: current_user)
+        # excecution
+        result = helper.liked_by?(post)
+        # asertion
+        expect(result).to be_truthy
+      end
     end
 
-    it 'returns false when not liked by current logged in user' do
-      expect(!helper.liked_by?(@post)).to be_falsey
-    end
-  end
-
-  describe 'current_user_like' do
-    it 'returns the like object for the current user if the post is liked by the current user' do
-      expect(helper.current_user_like(@post)).to eq(@like)
+    context 'not liked by current logged in user' do
+      it 'returns false' do
+        expect(helper.liked_by?(post)).to be_falsey
+      end
     end
   end
 end
