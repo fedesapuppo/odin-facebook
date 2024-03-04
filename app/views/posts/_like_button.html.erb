@@ -1,0 +1,15 @@
+<% if liked_by?(post, current_user) %>
+  <%= form_with model: current_user_like(post),
+    url: post_like_path(post, current_user_like(post)),
+    method: :delete, class: 'like-form' do |f| %>
+    <%= f.submit 'Unlike', class: 'btn btn-danger unlike-button' %>
+  <% end %>
+<% else %>
+  <%= form_with model: Like.new,
+    url: post_likes_path(post),
+    method: :post,
+    class: 'like-form' do |f| %>
+    <%= f.hidden_field :post_id, value: post.id %>
+    <%= f.submit 'Like', class: 'btn btn-primary like-button' %>
+  <% end %>
+<% end %>
