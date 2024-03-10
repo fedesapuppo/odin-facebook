@@ -1,11 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe "FriendRequests", type: :request do
-  describe "GET /create" do
-    it "returns http success" do
-      get "/friend_requests/create"
-      expect(response).to have_http_status(:success)
+RSpec.describe 'FriendRequests', type: :request do
+  include Devise::Test::IntegrationHelpers
+  describe 'POST /create' do
+    it 'returns http success' do
+      user = create(:user)
+      sign_in user
+      post '/friend_requests/create', params: { friend_request: { receiver_id: user.id } }
+      expect(response).to redirect_to(root_path)
     end
   end
-
 end
