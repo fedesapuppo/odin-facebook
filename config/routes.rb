@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  post 'friend_requests/create'
-  get 'friends/index'
+  resources :friend_requests, only %i(create)
+  resources :friends, only: %i(index)
   root 'pages#home'
   devise_for :users
   resources :posts do
