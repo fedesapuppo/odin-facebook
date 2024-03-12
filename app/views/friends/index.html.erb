@@ -19,10 +19,7 @@
   <% @users_not_friends.each do |user| %>
     <li>
       <%= user.name %>
-      <%= form_with model: FriendRequest.new, url: friend_requests_path, method: :post do |f| %>
-        <%= f.hidden_field :receiver_id, value: user.id %>
-        <%= f.submit "Send Friend Request", class: "btn btn-success" %>
-      <% end %>
+      <%= render "friend_request_button", user: user %>
     </li>
   <% end %>
 </ul>

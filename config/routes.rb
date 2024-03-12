@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :friend_requests, only %i(create)
-  resources :friends, only: %i(index)
+  resources :friend_requests, only: [:create]
+  resources :friends, only: [:index]
   root 'pages#home'
   devise_for :users
   resources :posts do
