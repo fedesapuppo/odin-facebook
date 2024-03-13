@@ -6,7 +6,6 @@ class LikesController < ApplicationController
     if @like.new_record?
       if @like.save
         flash[:notice] = 'Post liked.'
-
       else
         flash[:alert] = 'Unable to like the post.'
       end
