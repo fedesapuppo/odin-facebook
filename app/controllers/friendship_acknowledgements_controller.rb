@@ -1,4 +1,5 @@
 class FriendshipAcknowledgementsController < ApplicationController
+  before_action :authenticate_user!
   def create
     friend_request = find_friend_request
     acknowledge_friend_request(friend_request, "accepted")
