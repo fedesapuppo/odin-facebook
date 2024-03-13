@@ -9,6 +9,6 @@
   <%= form_with model: FriendRequest.find_by(requester_id: current_user.id,
   receiver_id: user.id),
   method: :delete do |f| %>
-    <%= f.submit "Unsend", class: "btn btn-danger" %>
+    <%= f.submit "Unsend Friend Request", class: "btn btn-danger" %>
   <% end %>
 <% end %>
