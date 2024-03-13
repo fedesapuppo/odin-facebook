@@ -1,7 +1,5 @@
 <% if !friend_request_sent?(user) %>
-  <%= form_with model: FriendRequest.new,
-  url: friend_requests_path,
-  method: :post do |f| %>
+  <%= form_with model: FriendRequest.new do |f| %>
     <%= f.hidden_field :receiver_id, value: user.id %>
     <%= f.submit "Send Friend Request", class: "btn btn-success" %>
   <% end %>
