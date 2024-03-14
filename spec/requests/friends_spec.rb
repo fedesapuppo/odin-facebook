@@ -20,7 +20,8 @@ RSpec.describe 'Friends', type: :request do
       end
 
       it 'assigns the user\'s pending friend requests as @friend_requests' do
-        expect(controller.instance_variable_get(:@friend_requests)).to eq(FriendRequest.where(receiver_id: @user, status: 'pending'))
+        expect(controller.instance_variable_get(:@friend_requests)).to eq(FriendRequest.where(receiver_id: @user,
+                                                                                              status: 'pending'))
       end
 
       it 'assigns the users not yet friends as @users_not_friends' do
@@ -62,9 +63,9 @@ RSpec.describe 'Friends', type: :request do
 
     context 'when user is not logged in' do
       it 'does not delete the friendship' do
-        expect {
+        expect do
           delete "/friends/#{friendship.id}"
-        }.not_to change(Friendship, :count)
+        end.not_to change(Friendship, :count)
       end
 
       it 'redirects to the sign-in page' do

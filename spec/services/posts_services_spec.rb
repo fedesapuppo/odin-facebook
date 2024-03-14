@@ -1,13 +1,13 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe PostsService, type: :service do
-  describe "#friends_and_own_posts" do
+  describe '#friends_and_own_posts' do
     let(:user) { create(:user) }
     let(:friend) { create(:user) }
-    let(:friendship) { create(:friendship, user: user, friend: friend) }
+    let(:friendship) { create(:friendship, user:, friend:) }
 
-    it "returns posts from the user and their friends" do
-      own_post = create(:post, user: user)
+    it 'returns posts from the user and their friends' do
+      own_post = create(:post, user:)
 
       friendship
 

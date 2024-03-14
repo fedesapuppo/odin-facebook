@@ -11,9 +11,9 @@ class FriendsController < ApplicationController
   def destroy
     if @friendship
       @friendship.destroy
-      flash[:notice] = "Friendship removed successfully."
+      flash[:notice] = 'Friendship removed successfully.'
     else
-      flash[:alert] = "Friendship not found."
+      flash[:alert] = 'Friendship not found.'
     end
     redirect_to friends_path
   end

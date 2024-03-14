@@ -30,7 +30,8 @@ RSpec.describe 'FriendshipAcknowledgements', type: :request do
         friend_request = create(:friend_request)
         friendship_acknowledgement = create(:friendship_acknowledgement)
         sign_in user
-        delete "/friendship_acknowledgements/#{friendship_acknowledgement.id}", params: { friend_request: { friend_request_id: friend_request.id } }
+        delete "/friendship_acknowledgements/#{friendship_acknowledgement.id}",
+               params: { friend_request: { friend_request_id: friend_request.id } }
         expect(response).to redirect_to(notifications_path)
       end
     end

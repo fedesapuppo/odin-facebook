@@ -2,3 +2,8 @@ AllCops:
   Exclude:
     - 'db/schema.rb'
     - 'db/seeds.rb'
+  NewCops:
+    enable
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
