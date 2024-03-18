@@ -1,5 +1,4 @@
 class FriendsController < ApplicationController
-  before_action :authenticate_user!
   before_action :find_friendship, only: [:destroy]
 
   def index

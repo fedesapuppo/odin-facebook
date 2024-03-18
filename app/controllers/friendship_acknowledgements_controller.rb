@@ -1,5 +1,4 @@
 class FriendshipAcknowledgementsController < ApplicationController
-  before_action :authenticate_user!
   def create
     friend_request = find_friend_request
     acknowledge_friend_request(friend_request, 'accepted')
@@ -19,7 +18,7 @@ class FriendshipAcknowledgementsController < ApplicationController
   def acknowledge_friend_request(friend_request, status)
     ActiveRecord::Base.transaction do
       friend_request.update!(status:)
-      create_friendships(friend_request) if status == 'accepted'
+      create_friendships!(friend_request) if status == 'accepted'
     end
     redirect_to notifications_path
   rescue ActiveRecord::RecordInvalid
