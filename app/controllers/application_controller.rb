@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
   respond_to :html
   before_action :authenticate_user!
+  before_action :load_friend_requests
 
   def after_sign_in_path_for(_resource)
     posts_path
