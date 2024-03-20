@@ -5,6 +5,7 @@ RSpec.describe 'Posts', type: :request do
 
   let(:user) { create(:user) }
   let(:post_model) { create(:post, user:) }
+  let(:like) { create(:like, user:, post: post_model) }
 
   describe 'GET /index' do
     context 'when user is logged in' do
@@ -110,7 +111,7 @@ RSpec.describe 'Posts', type: :request do
       it 'does not update the post with invalid attributes' do
         @post = Post.find(post_model.id)
         patch "/posts/#{post_model.id}", params: { post: { title: '' } }
-        expect(flash[:alert]).to eq('Post update failed.')
+        expect(flash[:notice]).to eq('Post update failed.')
       end
     end
 
@@ -140,6 +141,47 @@ RSpec.describe 'Posts', type: :request do
     context 'when user is not logged in' do
       it 'redirects to sign in page' do
         delete "/posts/#{post_model.id}"
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+  end
+
+  describe 'POST /:post_id/likes' do
+    context 'when user is logged in' do
+      before { sign_in user }
+
+      it 'creates a like for the post' do
+        expect do
+          post "/posts/#{post_model.id}/likes"
+        end.to change(Like, :count).by(1)
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(posts_path)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to sign in page' do
+        post "/posts/#{post_model.id}/likes"
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+  end
+
+  describe 'DELETE /:post_id/likes/:id' do
+    context 'when user is logged in' do
+      before { sign_in user }
+
+      it 'deletes the like for the post' do
+        like = create(:like, user:, post: post_model)
+        expect { delete "/posts/#{post_model.id}/likes/#{like.id}" }
+          .to change { Like.count }.by(-1)
+        expect(response).to have_http_status(:redirect)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to sign in page' do
+        delete "/posts/#{post_model.id}/likes/#{like.id}"
         expect(response).to redirect_to(new_user_session_path)
       end
     end
