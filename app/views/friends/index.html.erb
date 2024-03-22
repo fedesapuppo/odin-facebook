@@ -19,7 +19,7 @@
   <% @users_not_friends.each do |user| %>
     <li>
       <%= user.name %>
-      <%= render "friend_request_button", user: user %>
+      <%= render "friend_request_button", user: %>
     </li>
   <% end %>
 </ul>

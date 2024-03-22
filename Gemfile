@@ -71,6 +71,10 @@ group :development do
   gem 'guard'
   gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
   gem 'web-console'
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'meta_request'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
