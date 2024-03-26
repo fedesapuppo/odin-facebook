@@ -12,12 +12,12 @@ class FriendshipsController < ApplicationController
 
   def destroy
 
-    friend = User.find(params[:friend_id])
+    friend = User.find(params[:id])
     friendship = current_user.friendships.find_by(friend:)
     if friendship&.destroy
-      flash[:notice] = 'Friendship removed.'
+      flash[:notice] = 'Friend removed!'
     else
-      flash[:alert] = 'Friendship could not be removed.'
+      flash[:alert] = 'Friend could not be removed.'
     end
     redirect_to friends_path
   end
@@ -25,6 +25,6 @@ class FriendshipsController < ApplicationController
   private
 
   def friendship_params
-    params.permit(:friend_id)
+    params.permit(:id)
   end
 end
