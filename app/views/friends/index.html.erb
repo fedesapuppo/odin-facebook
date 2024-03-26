@@ -3,8 +3,11 @@
   <ul>
     <% @friends.each do |friend| %>
       <li>
+        debugger
         <%= friend.name %> (email: <%= friend.email %>)
-        <%= form_for friend, url: friendship_path(friend), method: :delete, html: { class: "friendship-form" } do |f| %>
+        <%= form_with model: Friendship.find_by(user_id: current_user.id, friend_id: friend.id),
+         url: friendship_path(friend),
+         method: :delete, html: { class: "friendship-form" } do |f| %>
           <%= f.submit "Remove Friendship", class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this friendship?" } %>
         <% end %>
       </li>

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Users can send and unsend friend requests to other users', type: :feature do
-  context 'User logs in, visits friends page, and send follow request' do
+  context 'User logs in, visits friends page, and send friend request' do
     scenario 'User sends a friend request to another user' do
       user = create(:user)
       non_friend = create(:user)

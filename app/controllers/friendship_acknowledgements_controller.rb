@@ -2,11 +2,13 @@ class FriendshipAcknowledgementsController < ApplicationController
   def create
     friend_request = find_friend_request
     acknowledge_friend_request(friend_request, 'accepted')
+    flash[:notice] = 'Friend request accepted!'
   end
 
   def destroy
     friend_request = find_friend_request
     acknowledge_friend_request(friend_request, 'rejected')
+    flash[:notice] = 'Friend request rejected!'
   end
 
   private
@@ -26,7 +28,7 @@ class FriendshipAcknowledgementsController < ApplicationController
     redirect_to notifications_path
   end
 
-  def create_friendships(friend_request)
+  def create_friendships!(friend_request)
     friendship1 = Friendship.create(user: friend_request.receiver, friend: friend_request.requester)
     friendship2 = Friendship.create(user: friend_request.requester, friend: friend_request.receiver)
     FriendshipAcknowledgement.create(friend_request_id: friend_request.id, friendship_id: [friendship1, friendship2])
