@@ -12,8 +12,7 @@ RSpec.feature 'Users can create posts', type: :feature, js: true do
     click_link 'New Post'
 
     fill_in 'Title', with: 'Amazing post title!'
-    # find('.trix-content').set("Amazing post's content!")
-    # fill_in_rich_text_area "Content", with: "Amazing post's content!"
+
     execute_script("document.querySelector('trix-editor').editor.loadHTML('Amazing post content!')")
 
     click_button 'Create'

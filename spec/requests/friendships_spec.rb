@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe FriendshipsController, type: :request do
   include Devise::Test::IntegrationHelpers
   let(:user) { create(:user) }
-  let(:friend) { create(:user) }
+  let!(:friend) { create(:user) }
   let!(:friendship) { create(:friendship, user:, friend:) }
 
   describe 'POST #create' do
@@ -40,24 +40,24 @@ RSpec.describe FriendshipsController, type: :request do
       before { sign_in user }
       it 'destroys the friendship' do
         expect do
-          delete "/friendships/#{friendship.id}", params: { friend_id: friend.id }
+          delete "/friendships/#{friend.id}"
         end.to change(Friendship, :count).by(-1)
       end
 
       it 'redirects to friends path' do
-        delete "/friendships/#{friendship.id}", params: { friend_id: friend.id }
+        delete "/friendships/#{friend.id}"
         expect(response).to redirect_to(friends_path)
       end
 
       it 'sets a flash notice' do
-        delete "/friendships/#{friendship.id}", params: { friend_id: friend.id }
-        expect(flash[:notice]).to eq('Friendship removed.')
+        delete "/friendships/#{friend.id}"
+        expect(flash[:notice]).to eq('Friend removed!')
       end
     end
 
     context 'when user is not authenticated' do
       it 'redirects to sign in page' do
-        delete "/friendships/#{friendship.id}", params: { friend_id: friend.id }
+        delete "/friendships/#{friend.id}"
         expect(response).to redirect_to(new_user_session_path)
       end
     end
