@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Users can
-remove friends', type: :feature do
+RSpec.feature 'Users can remove friends', type: :feature do
   scenario 'User logs in, visits friends page, and removes a friend' do
     user = create(:user)
     friend = create(:user)

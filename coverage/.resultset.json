@@ -1,16 +1,13 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/fedesapuppo/odin-facebook/spec/features/user_can_remove_friendships_spec.rb": {
+      "/Users/fedesapuppo/odin-facebook/spec/features/user_can_create_posts_spec.rb": {
         "lines": [
           1,
           null,
           1,
           1,
           1,
-          1,
-          1,
-          1,
           null,
           1,
           1,
@@ -20,6 +17,13 @@
           1,
           null,
           1,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
           null,
           null
         ]
@@ -1241,9 +1245,9 @@
         "lines": [
           1,
           1,
-          3,
-          3,
-          3,
+          2,
+          2,
+          2,
           null,
           null
         ]
@@ -1300,7 +1304,7 @@
         "lines": [
           1,
           1,
-          1,
+          0,
           null,
           null
         ]
@@ -1348,26 +1352,51 @@
           null
         ]
       },
-      "/Users/fedesapuppo/odin-facebook/app/models/friendship.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/fedesapuppo/odin-facebook/app/controllers/friends_controller.rb": {
+      "/Users/fedesapuppo/odin-facebook/app/controllers/posts_controller.rb": {
         "lines": [
           1,
           1,
           null,
           1,
-          2,
-          2,
-          2,
+          1,
+          1,
           null,
           null,
           1,
+          0,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
           0,
           0,
           0,
@@ -1402,7 +1431,7 @@
           1,
           null,
           1,
-          3,
+          2,
           null,
           null
         ]
@@ -1434,41 +1463,53 @@
           null
         ]
       },
-      "/Users/fedesapuppo/odin-facebook/app/controllers/friendships_controller.rb": {
+      "/Users/fedesapuppo/odin-facebook/app/services/posts_service.rb": {
         "lines": [
           1,
-          null,
           1,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          null,
           1,
+          null,
           null,
           1,
           1,
           1,
+          null,
+          null
+        ]
+      },
+      "/Users/fedesapuppo/odin-facebook/app/models/friendship.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/fedesapuppo/odin-facebook/app/models/post.rb": {
+        "lines": [
+          1,
+          1,
+          1,
           1,
           null,
-          0,
-          null,
-          1,
-          null,
-          null,
           1,
           null,
           1,
-          0,
+          1,
+          null
+        ]
+      },
+      "/Users/fedesapuppo/odin-facebook/app/models/like.rb": {
+        "lines": [
+          1,
+          1,
+          1,
           null,
+          1,
           null
         ]
       }
     },
-    "timestamp": 1711489576
+    "timestamp": 1711497841
   }
 }
