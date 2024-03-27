@@ -1,6 +1,4 @@
 class FriendRequestsController < ApplicationController
-  before_action :authenticate_user!
-
   def create
     receiver = User.find(params[:friend_request][:receiver_id])
     friend_request = current_user.friend_requests.build(requester_id: current_user.id, receiver:,

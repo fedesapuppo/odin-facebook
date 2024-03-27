@@ -1,5 +1,4 @@
 class FriendsController < ApplicationController
-  before_action :authenticate_user!
   before_action :find_friendship, only: [:destroy]
 
   def index
@@ -11,9 +10,9 @@ class FriendsController < ApplicationController
   def destroy
     if @friendship
       @friendship.destroy
-      flash[:notice] = "Friendship removed successfully."
+      flash[:notice] = 'Friendship removed successfully.'
     else
-      flash[:alert] = "Friendship not found."
+      flash[:alert] = 'Friendship not found.'
     end
     redirect_to friends_path
   end

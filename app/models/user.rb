@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts
-  has_many :friend_requests, foreign_key: "requester_id"
+  has_many :friend_requests, foreign_key: 'requester_id'
   has_many :likes
   has_many :comments
   has_many :friendships, dependent: :destroy

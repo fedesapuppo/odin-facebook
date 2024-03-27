@@ -11,11 +11,8 @@ RSpec.describe PostsHelper, type: :helper do
   describe 'liked_by?' do
     context 'liked by current logged in user' do
       it 'returns true' do
-        # setup
         post.likes.create(user: current_user)
-        # excecution
         result = helper.liked_by?(post)
-        # asertion
         expect(result).to be_truthy
       end
     end

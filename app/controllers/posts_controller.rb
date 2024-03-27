@@ -1,31 +1,42 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
   include PostsHelper
 
-  def new
-    @friend_requests = FriendRequest.where(receiver_id: current_user, status: 'pending')
-    @post = Post.new
-  end
-
   def index
-    @friend_requests = FriendRequest.where(receiver_id: current_user, status: 'pending')
     @posts = PostsService.new(current_user).friends_and_own_posts
     @likes = current_user.likes.where(post_id: @posts.pluck(:id))
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
+  def new
+    @post = Post.new
+  end
+
   def create
-    @friend_requests = FriendRequest.where(receiver_id: current_user, status: 'pending')
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = 'Post created successfully'
       redirect_to posts_path
     else
-      flash.now[:alert] = 'Post creation failed.'
+      flash.now[:notice] = 'Post creation failed.'
     end
   end
 
   def edit
     @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = current_user.posts.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = 'Post updated successfully'
+      redirect_to posts_path
+    else
+      flash.now[:notice] = 'Post update failed.'
+      render :edit
+    end
   end
 
   def destroy
@@ -34,7 +45,7 @@ class PostsController < ApplicationController
       @post.destroy
       flash[:notice] = 'Post deleted successfully'
     else
-      flash[:alert] = 'Post not found'
+      flash[:notice] = 'Post not found'
     end
     redirect_to posts_path
   end

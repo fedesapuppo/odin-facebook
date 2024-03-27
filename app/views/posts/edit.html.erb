@@ -1,0 +1,14 @@
+<h1>Edit Post</h1>
+<%= form_with(model: @post, url: post_path(@post), method: :patch) do |form| %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :content %>
+    <%= form.rich_text_area :content, cols: 20, rows: 40, class: "form-control" %>
+  </div>
+  <div>
+    <%= form.submit "Update Post" , class: "btn btn-success" %>
+  </div>
+<% end %>
