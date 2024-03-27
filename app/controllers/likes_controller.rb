@@ -6,9 +6,9 @@ class LikesController < ApplicationController
     if @like.new_record?
       if @like.save
         if request.referer == post_url(@post)
-          redirect_to @post, notice: 'You liked this post!'
+          redirect_to @post, notice: 'Post liked!'
         else
-          redirect_to posts_url, notice: 'You liked this post!'
+          redirect_to posts_url, notice: 'Post liked!'
         end
       else
         flash[:alert] = 'Unable to like the post.'
