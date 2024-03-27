@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :posts do
     resources :likes, only: %i[create destroy]
+    resources :comments, only: %i[create destroy]
   end
   resources :notifications, only: [:index]
   resources :friendship_acknowledgements, only: %i[create destroy]
