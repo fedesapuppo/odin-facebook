@@ -2,28 +2,37 @@ class LikesController < ApplicationController
   before_action :set_post, only: %i[create destroy]
 
   def create
-    @like = current_user.likes.find_or_initialize_by(post_id: params[:post_id])
+    @like = current_user.likes.find_or_initialize_by(post_id: @post.id)
     if @like.new_record?
       if @like.save
-        flash[:notice] = 'Post liked.'
+        if request.referer == post_url(@post)
+          redirect_to @post, notice: 'You liked this post!'
+        else
+          redirect_to posts_url, notice: 'You liked this post!'
+        end
       else
         flash[:alert] = 'Unable to like the post.'
+        redirect_to @post
       end
     else
       flash[:alert] = 'You have already liked this post.'
+      redirect_to @post
     end
-    redirect_to posts_path
   end
 
   def destroy
-    @like = current_user.likes.find_by(post: @post)
+    @like = current_user.likes.find_by(post_id: @post.id)
     if @like
       @like.destroy
-      flash[:notice] = 'Like removed.'
+      if request.referer == post_url(@post)
+        redirect_to @post, notice: 'Like removed.'
+      else
+        redirect_to posts_url, notice: 'Like removed.'
+      end
     else
-      flash[:alert] = 'Unable to remove the like.'
+      flash[:alert] = 'Like not found.'
+      redirect_to @post
     end
-    redirect_to posts_path
   end
 
   private

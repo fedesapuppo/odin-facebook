@@ -1,6 +1,8 @@
 <div class="post">
   <h1><%= @post.title %></h1>
   <p><%= @post.content %></p>
+  <p>This post has <%= pluralize(@post.likes.count, "like") %>! </p>
+  <%= render "like_button", post: @post %>
   <p>Posted by: <%= @post.user.name %></p>
 </div>
 <% if @post.user == current_user %>
