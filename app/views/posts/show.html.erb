@@ -14,7 +14,7 @@
   <%= form.text_area :content, class: "form-control" %>
   <%= form.submit "Submit", class: "btn btn-primary mt-2" %>
 <% end %>
-<% @post.comments.each do |comment| %>
+<% @post.comments.order("created_at DESC").each do |comment| %>
   <div class="comment">
     <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
     <% if comment.user == current_user %>

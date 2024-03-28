@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :set_post
-  before_action :set_comment, only: [:destroy]
 
   def create
     @comment = @post.comments.new(comment_params)
@@ -16,6 +15,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = @post.comments.find(params[:id])
     if @comment.destroy
       redirect_to @post, notice: 'You eliminated the comment!'
     else
@@ -27,10 +27,6 @@ class CommentsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
-  end
-
-  def set_comment
-    @comment = @post.comments.find(params[:id])
   end
 
   def comment_params
