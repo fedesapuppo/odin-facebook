@@ -7,10 +7,8 @@ class CommentsController < ApplicationController
 
     if @comment.save
       redirect_to @post, notice: 'You commented this post!'
-    elsif @comment.errors[:content].include?("can't be blank")
-      redirect_to @post, alert: 'You cannot post an empty comment, write something!'
     else
-      redirect_to @post, alert: 'There was an error commenting the post'
+      redirect_to @post, alert: @comment.errors.full_messages.to_sentence
     end
   end
 

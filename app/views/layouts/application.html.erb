@@ -10,7 +10,7 @@
     <%= stylesheet_link_tag "application" %>
   </head>
   <body>
-    <% unless current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
+    <% if user_signed_in? %>
       <%= render partial: "shared/navbar" %>
     <% end %>
     <div class="container">
