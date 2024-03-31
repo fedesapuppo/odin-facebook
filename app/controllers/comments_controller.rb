@@ -4,11 +4,10 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
-
     if @comment.save
       redirect_to @post, notice: 'You commented this post!'
     else
-      redirect_to @post, alert: @comment.errors.full_messages.to_sentence
+      redirect_to @post, alert: @comment.errors.messages[:content].to_sentence
     end
   end
 
