@@ -1,10 +1,25 @@
 <div class="post">
   <h1><%= @post.title %></h1>
   <p><%= @post.content %></p>
+  <p>This post has <%= pluralize(@post.likes.count, "like") %>! </p>
+  <%= render "like_button", post: @post %>
   <p>Posted by: <%= @post.user.name %></p>
 </div>
 <% if @post.user == current_user %>
   <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-primary" %>
   <%= button_to "Delete", post_path(@post), method: :delete, class: "btn btn-danger" %>
+<% end %>
+<%= form_with(model: [@post, Comment.new]) do |form| %>
+  <%= form.label :content, "Add Comment" %>
+  <%= form.text_area :content, class: "form-control" %>
+  <%= form.submit "Submit", class: "btn btn-primary mt-2" %>
+<% end %>
+<% @post.comments.order("created_at DESC").each do |comment| %>
+  <div class="comment">
+    <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
+    <% if comment.user == current_user %>
+      <%= button_to "Delete", [@post, comment], method: :delete, class: "btn btn-danger btn-sm" %>
+    <% end %>
+  </div>
 <% end %>
 <%= link_to 'Back to Posts', posts_path, class: "btn btn-primary" %>

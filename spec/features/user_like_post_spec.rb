@@ -16,6 +16,6 @@ RSpec.feature 'User Like and Unlike Post', type: :feature do
 
     click_button 'Like'
 
-    expect(page).to have_content('Post liked.')
+    expect(page).to have_content('Post liked')
   end
 end

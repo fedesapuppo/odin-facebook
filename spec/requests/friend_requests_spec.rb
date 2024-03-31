@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe 'FriendRequests', type: :request do
   include Devise::Test::IntegrationHelpers
 
