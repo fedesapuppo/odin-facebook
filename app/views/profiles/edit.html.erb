@@ -1,0 +1,29 @@
+<h1>Edit Profile</h1>
+<%= form_with(model: @profile, url: profile_path(@profile), method: :patch) do |form| %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :surname %>
+    <%= form.text_field :surname, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :bio %>
+    <%= form.text_area :bio, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :profile_picture %>
+    <%= form.file_field :profile_picture, class: "form-control" %>
+    <div class="actions">
+      <%= form.submit 'Update Profile' %>
+    </div>
+  <% end %>
