@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
     if @profile.save
       redirect_to @profile
     else
-      render 'new', alert: @profile.errors.full_messages.join(', ')
+      redirect_to @profile, alert: @profile.errors.full_messages.to_sentence
     end
   end
 
