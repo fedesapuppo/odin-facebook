@@ -57,7 +57,6 @@ gem 'image_processing', '~> 1.2'
 gem 'responders'
 gem 'simple_form'
 gem 'gravatar_image_tag'
-gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -96,3 +95,5 @@ group :production do
 end
 
 gem 'factory_bot', '~> 6.2'
+
+gem "tailwindcss-rails", "~> 2.4"
