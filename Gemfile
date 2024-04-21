@@ -97,3 +97,5 @@ end
 gem 'factory_bot', '~> 6.2'
 
 gem "tailwindcss-rails", "~> 2.4"
+
+gem "importmap-rails", "~> 2.0"
