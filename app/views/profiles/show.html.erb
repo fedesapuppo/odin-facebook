@@ -2,8 +2,8 @@
   <h1 class="font-black"><%= @profile.name %>'s Profile</h1>
   <div>
     <% if @profile.profile_picture.attached? %>
-      <div class="w-25">
-        <%= image_tag @profile.profile_picture, class:"max-w-full", alt: 'profile picture' %>
+      <div>
+        <%= image_tag @profile.profile_picture, class:"w-2/5", alt: 'profile picture' %>
       </div>
     <% else %>
       <p>No profile picture attached.</p>
