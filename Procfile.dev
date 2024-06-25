@@ -3,3 +3,4 @@ js: yarn build --watch
 css: yarn watch:css
 css: yarn watch:css
 css: yarn watch:css
+css: bin/rails tailwindcss:watch

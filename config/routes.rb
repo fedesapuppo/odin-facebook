@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :friends, only: %i[index destroy]
   resources :friendships, only: %i[create destroy]
   resources :friend_requests, only: %i[create destroy]
+  resources :profiles, except: %i[index destroy]
 end

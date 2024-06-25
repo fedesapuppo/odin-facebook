@@ -6,8 +6,8 @@ ruby '3.3.0'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.8'
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+# The new simple and fast asset pipeline for Rails [https://github.com/rails/propshaft]
+gem 'propshaft'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
@@ -53,6 +53,7 @@ gem 'devise'
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'figaro'
+gem 'gravatar_image_tag'
 gem 'image_processing', '~> 1.2'
 gem 'responders'
 gem 'simple_form'
@@ -94,3 +95,7 @@ group :production do
 end
 
 gem 'factory_bot', '~> 6.2'
+
+gem 'tailwindcss-rails', '~> 2.4'
+
+gem 'importmap-rails', '~> 2.0'

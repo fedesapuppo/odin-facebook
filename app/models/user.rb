@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :comments
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships, source: :friend
+  has_one :profile
 end

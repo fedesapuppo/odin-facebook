@@ -1,12 +1,12 @@
 <% if !friend_request_sent?(user) %>
   <%= form_with model: FriendRequest.new do |f| %>
     <%= f.hidden_field :receiver_id, value: user.id %>
-    <%= f.submit "Send Friend Request", class: "btn btn-success" %>
+    <%= f.submit "Send Friend Request", class:"focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" %>
   <% end %>
 <% else %>
   <%= form_with model: FriendRequest.find_by(requester_id: current_user.id,
   receiver_id: user.id),
   method: :delete do |f| %>
-    <%= f.submit "Unsend Friend Request", class: "btn btn-danger" %>
+    <%= f.submit "Unsend Friend Request", class:"focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" %>
   <% end %>
 <% end %>

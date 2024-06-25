@@ -6,7 +6,7 @@
         <%= friend.name %> (email: <%= friend.email %>)
         <%= form_with url: friendship_path(friend),
          method: :delete, html: { class: "friendship-form" } do |f| %>
-          <%= f.submit "Remove Friend", class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this friendship?" } %>
+          <%= f.submit "Remove Friend", class:"focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900", data: { confirm: "Are you sure you want to remove this friendship?" } %>
         <% end %>
       </li>
     <% end %>
@@ -14,7 +14,7 @@
 <% else %>
   <p>You don't have any friends yet.</p>
 <% end %>
-<%= link_to "Back to Home", posts_path, class: "btn btn-primary" %>
+<%= link_to "Back to Home", posts_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
 <h1>Users Who Are Not Your Friends</h1>
 <ul>
   <% @users_not_friends.each do |user| %>
@@ -24,4 +24,4 @@
     </li>
   <% end %>
 </ul>
-<%= link_to "Back to Home", posts_path, class: "btn btn-primary" %>
+<%= link_to "Back to Home", posts_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>

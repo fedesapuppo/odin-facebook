@@ -6,20 +6,20 @@
   <p>Posted by: <%= @post.user.name %></p>
 </div>
 <% if @post.user == current_user %>
-  <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-primary" %>
-  <%= button_to "Delete", post_path(@post), method: :delete, class: "btn btn-danger" %>
+  <%= link_to "Edit Post", edit_post_path(@post), class: "focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" %>
+  <%= button_to "Delete", post_path(@post), method: :delete, class:"focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" %>
 <% end %>
 <%= form_with(model: [@post, Comment.new]) do |form| %>
   <%= form.label :content, "Add Comment" %>
   <%= form.text_area :content, class: "form-control" %>
-  <%= form.submit "Submit", class: "btn btn-primary mt-2" %>
+  <%= form.submit "Submit", class: "focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" %>
 <% end %>
 <% @post.comments.order("created_at DESC").each do |comment| %>
   <div class="comment">
     <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
     <% if comment.user == current_user %>
-      <%= button_to "Delete", [@post, comment], method: :delete, class: "btn btn-danger btn-sm" %>
+      <%= button_to "Delete", [@post, comment], method: :delete, class:"focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" %>
     <% end %>
   </div>
 <% end %>
-<%= link_to 'Back to Posts', posts_path, class: "btn btn-primary" %>
+<%= link_to 'Back to Posts', posts_path, class: "focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" %>

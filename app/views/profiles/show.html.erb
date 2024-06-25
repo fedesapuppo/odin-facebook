@@ -1,0 +1,22 @@
+<% if @profile %>
+  <h1 class="font-black"><%= @profile.name %>'s Profile</h1>
+  <div>
+    <% if @profile.profile_picture.attached? %>
+      <div>
+        <%= image_tag @profile.profile_picture, class:"w-2/5", alt: 'profile picture' %>
+      </div>
+    <% else %>
+      <p>No profile picture attached.</p>
+    <% end %>
+    <strong>Name:</strong> <%= @profile.name %><br>
+    <strong>Surname:</strong> <%= @profile.surname %><br>
+    <strong>Date of Birth:</strong> <%= @profile.date_of_birth %><br>
+    <strong>Bio:</strong> <%= @profile.bio %><br>
+    <strong>Phone Number:</strong> <%= @profile.phone_number %><br>
+  </div>
+  <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+  <%= link_to 'Back to Home', posts_path(current_user) %>
+<% else %>
+  <h1>Create Your Profile!</h1>
+  <%= link_to 'Create Profile', new_profile_path(@profile) %>
+<% end %>
