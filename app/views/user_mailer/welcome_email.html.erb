@@ -1,17 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to odin-facebook!</title>
   </head>
-  <body>
-    <h1>Welcome to odin-facebook!</h1>
-    <p>
-      You have successfully signed up,
-      your username is your e-mail: <%= @user.email %>.<br>
-    </p>
-    <p>
-      To login to the site, just follow this link: <a href="<%= @url %>">
-      </p>
-      <p>Thanks for joining and have a great day!</p>
-    </body>
-  </html>
+  <body style="font-family: Arial, sans-serif; background-color: #E0F2F1; color: #333333; margin: 0; padding: 0;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td align="center" style="padding: 20px 0;">
+          <h1 style="font-size: 24px; font-weight: bold; margin: 0;">Welcome to odin-facebook!</h1>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 20px 0;">
+          <p style="margin: 0;">You have successfully signed up, your username is your e-mail: <strong><%= @user.email %></strong>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 20px 0;">
+          <p style="margin: 0;">To login to the site, just follow this link: <a href="<%= @url %>" style="color: #FF9900; text-decoration: underline;">Login Link</a>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 20px 0;">
+          <p style="margin: 0;">Thanks for joining and have a great day!</p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
