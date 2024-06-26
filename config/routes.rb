@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :friend_requests, only: [:create]
   resources :friends, only: [:index]
   root 'pages#home'
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   resources :posts do
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create destroy]

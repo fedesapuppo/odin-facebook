@@ -166,6 +166,8 @@ GEM
     launchy (3.0.0)
       addressable (~> 2.8)
       childprocess (~> 5.0)
+    letter_opener (1.10.0)
+      launchy (>= 2.2, < 4)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -398,6 +400,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
+  letter_opener
   meta_request
   pg (~> 1.1)
   pry-rails

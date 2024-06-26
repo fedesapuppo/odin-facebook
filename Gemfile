@@ -72,6 +72,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'guard'
   gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
+  gem 'letter_opener'
   gem 'meta_request'
   gem 'web-console'
 
